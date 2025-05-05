@@ -44,10 +44,11 @@ class Product extends Model
         return $this->hasMany(OrderItem::class);
     }
 
-    public function offer()
+    public function offers()
     {
-        return $this->belongsTo(Offer::class ,'offer_id' ,'id');
+        return $this->belongsToMany(Offer::class, 'product_offers');
     }
+    
 
     protected $casts=[
         'images'=>'array'

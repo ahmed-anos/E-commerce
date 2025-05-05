@@ -8,7 +8,7 @@ use Spatie\Translatable\HasTranslations;
 class Brand extends Model
 {
     use HasTranslations;
-    protected $fillable=['name' ,'slug' ,'image' ];
+    protected $fillable=['name' ,'slug' ,'image','is_active' ];
 
     public array $translatable= [
         'name',

@@ -1,8 +1,12 @@
 <?php
 
+use App\Http\Middleware\RemoveTrailingSlash;
+use App\Http\Middleware\Setlocale;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Support\Facades\Route;
+
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -11,13 +15,9 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        $middleware->append(Setlocale::class);
         $middleware->alias([
             /**** OTHER MIDDLEWARE ALIASES ****/
-            'localize'                => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes::class,
-            'localizationRedirect'    => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRedirectFilter::class,
-            'localeSessionRedirect'   => \Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect::class,
-            'localeCookieRedirect'    => \Mcamara\LaravelLocalization\Middleware\LocaleCookieRedirect::class,
-            'localeViewPath'          => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

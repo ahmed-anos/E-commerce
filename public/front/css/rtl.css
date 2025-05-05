@@ -29,3 +29,41 @@ header{
   }
 }
 
+#shopFilter{
+  margin-left: 3.75rem;
+  margin-right: 0rem;
+  padding: 6px;
+}
+
+.multi-select__list{
+  padding-right: 0 !important;
+}
+
+.search-suggestion__item{
+  margin-left: 0.75rem !important;
+}
+.search-suggestion__item > :first-child {
+  margin-left: auto !important;
+  margin-right: 0 !important;
+
+}
+.search-suggestion__item::after{
+  right: 0.25rem !important;
+}
+.search-suggestion__item::before{
+  margin-left: 0.75rem !important;
+  margin-right: 0;
+  
+}
+.search-field__input-wrapper::after{
+  left: 1rem !important;
+  right: unset;
+}
+.pc__btn-wl{
+  left: 0 !important;
+  right: unset !important;
+}
+.btn-link{
+  margin-left: 0.5rem !important;
+  margin-right: unset;
+}

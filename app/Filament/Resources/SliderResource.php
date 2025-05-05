@@ -52,14 +52,14 @@ class SliderResource extends Resource
                 ->columnSpanFull(),
 
 
-                Textarea::make('description')->nullable()->columnSpanFull()->label(__('custom.slider.description')),
+                TextInput::make('description')->nullable()->columnSpanFull()->label(__('custom.slider.category')),
 
                 TextInput::make('order')
                 ->label(__('custom.slider.order'))
-                ->default(0)  
+                ->default(1)  
                 ->numeric()
                 ->required()
-                ->minValue(0)
+                ->minValue(1)
                 ->columnSpanFull(),
             ]);
     }

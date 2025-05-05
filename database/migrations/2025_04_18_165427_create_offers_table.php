@@ -18,8 +18,7 @@ return new class extends Migration
             $table->decimal('discount_price',8,2);
             $table->enum('discount_type',['fixed' , 'percentage'])->nullable();
             $table->json('categories_ids')->nullable(); 
-            $table->json('product_ids'); 
-    
+            $table->json('product_ids')->nullable(); 
             $table->date('start_date'); 
             $table->date('end_date');   
     

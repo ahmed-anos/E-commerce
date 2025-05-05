@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html dir="{{ LaravelLocalization::getCurrentLocaleDirection() }}" >
+<html lang="{{ app()->getLocale() }}" dir="{{ app()->getLocale() == 'ar' ? 'rtl' : 'ltr' }}" >
 
 
 @include('layouts.head')
-
 <body class="gradient-bg">
 <svg class="d-none">
     <symbol id="icon_nav" viewBox="0 0 25 18">
@@ -248,7 +247,7 @@
       </a>
 
       <div class="logo">
-        <a href="index.html">
+        <a href="{{ route('home') }}">
           <img src="front/images/logo.png" alt="Uomo" class="logo__image d-block" />
         </a>
       </div>
@@ -287,10 +286,10 @@
         <div class="overflow-hidden">
           <ul class="navigation__list list-unstyled position-relative">
             <li class="navigation__item">
-              <a href="index.html" class="navigation__link">Home</a>
+              <a href="{{ route('home') }}" class="navigation__link">Home</a>
             </li>
             <li class="navigation__item">
-              <a href="shop.html" class="navigation__link">Shop</a>
+              <a  window.livewire_app_url="{{ route('shop') }}" class="navigation__link">Shop</a>
             </li>
             <li class="navigation__item">
               <a href="cart.html" class="navigation__link">Cart</a>
@@ -373,6 +372,9 @@
 
 @include('layouts.footer')
 @include('layouts.scripts')
+
+@livewireScripts
+
 
 </body>
 </html>

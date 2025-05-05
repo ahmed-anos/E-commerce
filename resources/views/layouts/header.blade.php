@@ -3,7 +3,7 @@
     <div class="container">
       <div class="header-desk header-desk_type_1">
         <div class="logo">
-          <a href="index.html">
+          <a href="{{ route('home') }}">
             <img src="front/images/logo.png" alt="Uomo" class="logo__image d-block" />
           </a>
         </div>
@@ -11,12 +11,12 @@
         <nav class="navigation">
           <ul class="navigation__list list-unstyled d-flex">
             <li class="navigation__item">
-              <a href="index.html" class="navigation__link">{{__('front.Home')}}</a>
+              <a href="{{ route('home') }}" class="navigation__link">{{__('front.Home')}}</a>
             </li>
 
 
             <li class="navigation__item">
-              <a href="shop.html" class="navigation__link">{{__('front.Shop')}}</a>
+              <a href="{{ route('shop') }}" class="navigation__link">{{__('front.Shop')}}</a>
             </li>
             <li class="navigation__item">
               <a href="cart.html" class="navigation__link">{{__('front.Cart')}}</a>
@@ -99,8 +99,11 @@
             </svg>
             <span class="cart-amount d-block position-absolute js-cart-items-count">3</span>
           </a>
-
-          <li class="dropdown">
+<div class="d-flex">
+  <a href="{{ route('locale' ,'ar') }}"><x-flag-country-eg class="w-6 h-6" style="width: 50px"/></a>
+<a href="{{ route('locale' ,'en') }}"><x-flag-country-us class="w-6 h-6" style="width:50px"/></a>
+</div>
+          {{-- <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="true">
                 <i class="fa fa-flag-o"></i> {{ LaravelLocalization::getCurrentLocaleNative() }} <span class="caret"></span>
             </a>
@@ -114,7 +117,7 @@
                     </li>
                 @endforeach
             </ul>
-        </li>
+        </li> --}}
 
 
         </div>

@@ -4,4 +4,3 @@
 <script src="front/js/plugins/swiper.min.js"></script>
 <script src="front/js/plugins/countdown.js"></script>
 <script src="front/js/theme.js"></script>
-@livewireScripts

@@ -24,12 +24,13 @@ class Offer extends Model
     public array $translatable= [
         'name',
         'description',
-        'discount_type'
+        // 'discount_type'
     ];
     public function products()
     {
-        return $this->hasMany(Product::class);
+        return $this->belongsToMany(Product::class, 'product_offers');
     }
+    
     public function categories()
     {
         return $this->hasMany(Category::class);

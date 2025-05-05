@@ -139,6 +139,7 @@ return [
         'description'=>'الوصف',
         'image_title'=>'عنوان الصوره',
         'order'=>'الترتيب',
+        'category'=>'الفئه'
        
     ]
 

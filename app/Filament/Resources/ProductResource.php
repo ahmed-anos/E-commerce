@@ -67,6 +67,7 @@ class ProductResource extends Resource
                     ])->columns(2),
                     Section::make(__('custom.product.images'))->schema([
                         FileUpload::make('images')
+                        ->required()
                         ->multiple()->directory('products')->imageEditor()->maxFiles(5)->reorderable()
                     ])
                 ])->columnSpan(2),

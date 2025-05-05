@@ -14,6 +14,8 @@ use Filament\Forms\Form;
 use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -34,6 +36,17 @@ class OfferResource extends Resource
     {
         return __('custom.offer.title');
     }
+
+//     public static function afterCreate($record, array $data): void
+// {
+//     $record->products()->sync($data['product_ids'] ?? []);
+// }
+
+// public static function afterUpdate($record, array $data): void
+// {
+//     $record->products()->sync($data['product_ids'] ?? []);
+// }
+
 
     public static function form(Form $form): Form
     {
@@ -66,14 +79,21 @@ class OfferResource extends Resource
                             ->nullable()->searchable()->multiple()->preload()
                             ->options(Category::pluck('name','id')),
                           
-                       
-                        Forms\Components\Select::make('product_ids')
-                        ->label(__('custom.offer.products'))
-                        ->required()
-                        ->searchable()
-                        ->multiple()
-                        ->preload()
-                        ->options(Product::pluck('name', 'id')->toArray()),
+                            Forms\Components\Select::make('products')
+                            ->relationship('products', 'name')
+                            ->label(__('custom.offer.products'))
+                            ->searchable()
+                            ->required()
+                            ->multiple()
+                            ->preload(),
+
+                        // Forms\Components\Select::make('product_ids')
+                        // ->label(__('custom.offer.products'))
+                        // ->required()
+                        // ->searchable()
+                        // ->multiple()
+                        // ->preload()
+                        // ->options(Product::pluck('name', 'id')->toArray()),
                         Forms\Components\DatePicker::make('start_date')->label(__('custom.offer.start_date'))
                             ->required(),
                         Forms\Components\DatePicker::make('end_date')->label(__('custom.offer.end_date'))
@@ -93,13 +113,29 @@ class OfferResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('name')->label(__('custom.offer.offer_name'))->searchable(),
+                TextColumn::make('description')->label(__('custom.offer.offer_description')),
+                TextColumn::make('discount_price')->label(__('custom.offer.offer_discount'))->searchable()->sortable(),
+                IconColumn::make('show_on_homepage')->label(__('custom.offer.appearance'))
+                ->boolean()
+                ->searchable(),
+                TextColumn::make('start_date')->label(__('custom.offer.start_date'))->sortable(),
+                TextColumn::make('end_date')->label(__('custom.offer.end_date'))->sortable(),
+                TextColumn::make('created_at')->label(__('custom.users.created_at'))
+                ->dateTime()
+                ->sortable()
+                ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('updated_at')->label(__('custom.users.updated_at'))
+                ->dateTime()
+                ->sortable()
+                ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
